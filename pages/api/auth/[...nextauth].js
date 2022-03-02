@@ -11,11 +11,13 @@ export const authOptions = {
     // Credentials
     LineProvider({
       clientId: process.env.LINE_CLIENT_ID,
-      clientSecret: process.env.LINE_CLIENT_SECRET
+      clientSecret: process.env.LINE_CLIENT_SECRET,
+      secret: process.env.SECRET
     }),
     // LineProvider<any>(options: OAuthUserConfig<any>): OAuthConfig<any>)
     CredentialsProvider({
       name: "Credentials",
+      secret: process.env.SECRET,
       credentials: {
         email: { label: "Email", type: "text", value: "admin@local.com" },
         password: { label: "Password", type: "password", value: "pw" }
