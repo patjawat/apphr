@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 // add bootstrap css 
 import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
+const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
 type CustomAppProps = AppProps & {
   Component: NextComponentType & {auth?: boolean}
