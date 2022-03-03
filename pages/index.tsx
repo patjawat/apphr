@@ -1,11 +1,11 @@
 
 import Layout from "../components/layouts/Main"
-export default function Dashboard() {
+export default function Index() {
   return (
     <Layout>
-      <h1>secret dashboard</h1>
+      <h1>secret Index</h1>
     </Layout>
   )
 }
 
-Dashboard.auth = true
+Index.auth = true

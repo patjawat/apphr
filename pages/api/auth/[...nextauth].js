@@ -1,13 +1,22 @@
 import NextAuth from "next-auth";
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import LineProvider from "next-auth/providers/line";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaClient } from "@prisma/client";
-let userAccount = null;
 
 const prisma = new PrismaClient();
 
 export const authOptions = {
+  pages: {
+    // signIn: "/",
+    // signOut: "/",
+    // error: "/", // Error code passed in query string as ?error=
+    // verifyRequest: "/", // (used for check email message)
+    // If set, new users will be directed here on first sign in
+    newUser: '/dashboard',
+  },
   providers: [
     // Credentials
     GoogleProvider({
@@ -20,7 +29,7 @@ export const authOptions = {
           response_type: "code"
         }
       }
-    }),  
+    }),
     LineProvider({
       clientId: process.env.LINE_CLIENT_ID,
       clientSecret: process.env.LINE_CLIENT_SECRET,
@@ -35,7 +44,6 @@ export const authOptions = {
         };
       }
     }),
-    // LineProvider<any>(options: OAuthUserConfig<any>): OAuthConfig<any>)
     CredentialsProvider({
       name: "Credentials",
       secret: process.env.SECRET,
@@ -43,20 +51,6 @@ export const authOptions = {
         email: { label: "Email", type: "text", value: "admin@local.com" },
         password: { label: "Password", type: "password", value: "pw" }
       },
-      // async authorize(credentials) {
-      //   const user = await prisma.user.findFirst({
-      //     where: {
-      //       email: credentials.email,
-      //       // email: 'admin@local.com',
-      //       // password: "112233"
-      //     }
-      //   });
-      //   // if (credentials.password === "pw") {
-      //   if (user && credentials.password === "pw") {
-      //     return user;
-      //   }
-      //   return null
-      // },
       async authorize(credentials) {
         const user = await prisma.user.findFirst({
           where: {
@@ -116,12 +110,71 @@ export const authOptions = {
       }
       return session;
     }
+    // async jwt({ token, user, account }) {
+    //   if (account && user) {
+    //     return {
+    //       ...token,
+    //       accessToken: user.data.token,
+    //       refreshToken: user.data.refreshToken,
+    //     };
+    //   }
+
+    //   return token;
+    // },
+
+    // async session({ session, token }) {
+    //   session.user.accessToken = token.accessToken;
+    //   session.user.refreshToken = token.refreshToken;
+    //   session.user.accessTokenExpires = token.accessTokenExpires;
+
+    //   return session;
+    // },
+
   },
+  secret: process.env.JWT_SECRET,
   events: {
     // signIn: async (message) => {
-      async signIn({ account, profile ,message}) {
-      console.log("signIn", message);
+    async signIn({ user, account, profile, message }) {
       if (account.provider === "google") {
+        // try {
+        const exitedUser = await prisma.user.findUnique({
+          where: { email: user.email }
+        });
+        if (exitedUser) {
+      
+          console.log("exit userxxx")
+          //   console.log(exitedUser, "get user");
+            return Promise.resolve(true);
+        } else {
+          // console.log("create###", user.name, user.email);
+           await prisma.user.create({
+            data: {
+              name: user.name,
+              email: user.email,
+              image: user.image,
+              firstName: user.name,
+              lastname: user.name,
+              password: '',
+              isActive: '1'
+          }
+
+          });
+      
+          console.log("user IS ",createdUser);
+          if(createdUser){
+
+
+        }
+          // console.log(createdUser, "created user!");
+          // return Promise.resolve(true);
+          // console.log("Sign user Create", user);
+        }
+        // } catch (e) {
+        //   console.log(e);
+        //   return Promise.reject(true);
+        // }
+
+
         return profile.email_verified && profile.email.endsWith("@example.com")
       }
     },
