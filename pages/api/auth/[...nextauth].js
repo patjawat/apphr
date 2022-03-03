@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import LineProvider from "next-auth/providers/line";
+import GoogleProvider from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
 let userAccount = null;
 
@@ -9,9 +10,30 @@ const prisma = new PrismaClient();
 export const authOptions = {
   providers: [
     // Credentials
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
+    }),  
     LineProvider({
       clientId: process.env.LINE_CLIENT_ID,
       clientSecret: process.env.LINE_CLIENT_SECRET,
+      scope: "profile openid email",
+      openId: true,
+      profile: (profile) => {
+        return {
+          id: profile.sub,
+          name: profile?.name,
+          email: profile?.email,
+          image: profile.picture
+        };
+      }
     }),
     // LineProvider<any>(options: OAuthUserConfig<any>): OAuthConfig<any>)
     CredentialsProvider({
@@ -96,8 +118,12 @@ export const authOptions = {
     }
   },
   events: {
-    signIn: async (message) => {
+    // signIn: async (message) => {
+      async signIn({ account, profile ,message}) {
       console.log("signIn", message);
+      if (account.provider === "google") {
+        return profile.email_verified && profile.email.endsWith("@example.com")
+      }
     },
     signOut: async (message) => {
       console.log("signOut", message);
@@ -124,4 +150,3 @@ export const authOptions = {
 };
 
 export default NextAuth(authOptions);
-
