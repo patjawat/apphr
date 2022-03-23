@@ -1,10 +1,13 @@
 
-import Layout from "../components/layouts/Main"
-export default function Index() {
+import Layout from "../components/Layouts"
+
+type Props = {}
+
+export default function Index(props:Props) {
   return (
-    <Layout>
-      <h1>secret Index</h1>
-    </Layout>
+  <Layout>
+  Index
+  </Layout>
   )
 }
 

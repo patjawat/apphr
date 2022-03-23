@@ -41,17 +41,14 @@ const Auth = ({ children }:Props ) =>{
       if (status === 'loading')
         return; // Do nothing while loading
       if (!isUser)
-        // router.push('/api/auth/signin'); //Redirect to login
-        return;
+        router.push('/api/auth/signin'); //Redirect to login
     }
    
     getPost();
   }, [isUser, status])
 
-  return children;
-
-  // if (isUser) {
-  //   return children
-  // }
-  // return <div>Loading...</div>
+  if (isUser) {
+    return children
+  }
+  return <div>Loading...</div>
 }

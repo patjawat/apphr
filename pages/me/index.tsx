@@ -1,5 +1,5 @@
 
-import Layout from "../../components/layouts/Main"
+import Layout from "../../components/Layouts"
 import styles from "./header.module.css"
 import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/react"

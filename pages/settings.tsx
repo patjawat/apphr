@@ -2,10 +2,10 @@ import React from 'react'
 import Layout from "../components/Layouts"
 type Props = {}
 
-function Dashboard({}: Props) {
+function settings({}: Props) {
   return (
-    <Layout>dashboardxx</Layout>
+    <Layout>settings</Layout>
   )
 }
 
-export default Dashboard
+export default settings

@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].js", "pages/line/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].js", "pages/line/index.js", "pages/api/post/index.js", "pages/_app.js", "pages/_app.js", "components/foodcard/index.js"],
   "exclude": ["node_modules"]
 }
