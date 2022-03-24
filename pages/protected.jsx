@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react"
-import Layout from "../components/layouts/Main"
+import Layout from "../components/layouts"
 
 export default function Admin() {
   const { status } = useSession({

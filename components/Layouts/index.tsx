@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './header'
+import Layout from './adminlte'
 
 type Props = {
 children:React.ReactNode
@@ -8,12 +9,10 @@ children:React.ReactNode
 const Index = (props: Props) => {
   return (
     <>
-    <Header />
-   <div className="content mt-5">
-              <div className="container p-3">
+    {/* <Header /> */}
+   <Layout>
                   {props.children}
-              </div>
-          </div>
+          </Layout>
     </>
   )
 }

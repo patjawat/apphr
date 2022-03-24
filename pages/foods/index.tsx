@@ -9,7 +9,9 @@ const prisma = new PrismaClient();
 type Props = {
 foods:any,
 food:any,
+user:any,
 i:any
+title: any
 }
 const  Foods = (props: Props) => {
   const [showAddFoodModal, setShowAddFoodModal] = useState(false);
@@ -17,7 +19,6 @@ const  Foods = (props: Props) => {
 
   return (
     <Layout>
-
     <div className={styles.foodsCnt}>
       <div className={styles.foodsBreadcrumb}>
         <div>
@@ -39,7 +40,7 @@ const  Foods = (props: Props) => {
         </div>
       </div>
       <div className={styles.foods}>
-        {foods?.map((food, i) => (
+        {foods?.map((food : any, i : any) => (
           <FoodCard food={food} key={i} />
         ))}
       </div>

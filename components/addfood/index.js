@@ -6,6 +6,25 @@ export default function AddFood({ closeModal }) {
   const [disable, setDisable] = useState(false);
   const formRef = useRef();
 
+  const hiddenFileInput = useRef(null);
+
+  const handleChange = event => {
+
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+      const body = new FormData();
+      body.append("image", i);
+
+
+    }
+  };
+
+
+  const handleClick = event => {
+    hiddenFileInput.current.click();
+  };
+
+
   async function addNewFood(params) {
     setDisable(true);
     const {
@@ -49,6 +68,18 @@ export default function AddFood({ closeModal }) {
     </ModalHeader>
     <ModalBody>
     <form ref={formRef}>
+
+    <input type="file"
+                  ref={hiddenFileInput}
+                  onChange={handleChange}
+
+                  accept="image/*"
+                  style={{ display: 'none' }} />
+
+
+<span onClick={handleClick} size="xx-small" pos="absolute" zIndex="10" left="5px" bottom="5px"
+ aria-label="file upload ">upload</span>
+
             <div style={{ display: "flex", margin: "2px 2px 0 0" }}>
               <div
                 style={{ flex: "1 1 100%", margin: "0 0 2px 5px" }}

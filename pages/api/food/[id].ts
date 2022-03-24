@@ -13,7 +13,7 @@ interface Data {
 }
 
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse<Post>) => {
 	const {
 		query: { id },
 		method,
@@ -47,12 +47,12 @@ const deleteFood = async (req: NextApiRequest, res: NextApiResponse) => {
 	} = req;
 
     try {
-      const deleteFood = await prisma.food.delete({
-        where: {
-          id: parseInt(id),
-        },
-      });
-      res.status(200).json({msg:parseInt(id)});
+      // const deleteFood = await prisma.food.delete({
+      //   where: {
+      //     id: parseInt(id),
+      //   },
+      // });
+      // res.status(200).json({msg:parseInt(id)});
     } catch (error) {
       res.status(403).json({ err: "Error occured while deleting a food item." });
     }
@@ -68,9 +68,9 @@ const deleteFood = async (req: NextApiRequest, res: NextApiResponse) => {
     
     try {
       const result = await prisma.food.findFirst({
-        where: {
-          id: parseInt(id),
-        },
+        // where: {
+        //   id: parseInt(id),
+        // },
       });
       res.status(200).json(result);
     } catch (error) {
@@ -91,20 +91,20 @@ const updateFood = async (req: NextApiRequest, res: NextApiResponse) =>  {
       ingredients,
     } = req.body;
     try {
-      const updateFood = await prisma.food.update({
-        where: {
-          id: parseInt(id),
-        },
-        data: {
-          name,
-          price,
-          imageUrl,
-          active,
-          description,
-          ingredients,
-        },
-      });
-      res.status(200).json(updateFood);
+      // const updateFood = await prisma.food.update({
+      //   // where: {
+      //   //   id: parseInt(id),
+      //   // },
+      //   data: {
+      //     name,
+      //     price,
+      //     imageUrl,
+      //     active,
+      //     description,
+      //     ingredients,
+      //   },
+      // });
+      // res.status(200).json(updateFood);
     } catch (error) {
       res.status(403).json({ err: "Error occurred while updating a food item." });
     }

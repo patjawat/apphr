@@ -1,5 +1,6 @@
 import type { NextComponentType  } from 'next' //Import Component type
 import { SessionProvider, useSession } from 'next-auth/react'
+import NextNProgress from "nextjs-progressbar";
 import { AppProps } from 'next/app';
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
@@ -7,6 +8,9 @@ import { useRouter } from 'next/router'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../styles/globals.css'
+import 'admin-lte/dist/css/adminlte.min.css'
+import 'admin-lte/plugins/fontawesome-free/css/all.min.css'
+import 'admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'
 const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
 type CustomAppProps = AppProps & {
@@ -20,6 +24,13 @@ type Props = {
 export default function MyApp({ Component, pageProps: pageProps }: CustomAppProps) {
   return (
     <SessionProvider session={pageProps.session}>
+      <NextNProgress
+        color="#29D"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+        showOnShallow={true}
+      />
       {Component.auth ? (
         <Auth>
           <Component {...pageProps} />
@@ -41,17 +52,17 @@ const Auth = ({ children }:Props ) =>{
       if (status === 'loading')
         return; // Do nothing while loading
       if (!isUser)
-        // router.push('/api/auth/signin'); //Redirect to login
+        router.push('/api/auth/signin'); //Redirect to login
         return;
     }
    
     getPost();
   }, [isUser, status])
 
-  return children;
+  // return children;
 
-  // if (isUser) {
-  //   return children
-  // }
-  // return <div>Loading...</div>
+  if (isUser) {
+    return children
+  }
+  return <div>Loading...</div>
 }
