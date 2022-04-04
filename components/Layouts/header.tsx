@@ -5,8 +5,6 @@ type Props = {}
 
 const  Header = ({}: Props) => {
   return (
-    <>
-  
    <header className="navbar navbar-expand-md navbar-light d-print-none">
   <div className="container-xl">
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
@@ -146,8 +144,6 @@ const  Header = ({}: Props) => {
     </div>
   </div>
 </header>
-</>
-
   )
 }
 
