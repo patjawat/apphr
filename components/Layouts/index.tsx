@@ -1,19 +1,23 @@
 import React from 'react'
-import Header from './header'
-import Layout from './adminlte'
+import Header from './Header'
+import Navbar from './Navbar'
 
 type Props = {
-children:React.ReactNode
+  children: React.ReactNode
 }
 
 const Index = (props: Props) => {
   return (
-    <>
-    {/* <Header /> */}
-   <Layout>
-                  {props.children}
-          </Layout>
-    </>
+    <div className="page">
+      <Header />
+      <Navbar />
+      <div className="page-body">
+        <div className="container-xl">
+          {props.children}
+        </div>
+      </div>
+    </div>
+
   )
 }
 export default Index;

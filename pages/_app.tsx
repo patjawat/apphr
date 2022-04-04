@@ -5,12 +5,14 @@ import { AppProps } from 'next/app';
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 // add bootstrap css 
-import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../styles/globals.css'
-import 'admin-lte/dist/css/adminlte.min.css'
-import 'admin-lte/plugins/fontawesome-free/css/all.min.css'
-import 'admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'
+import '@tabler/core/dist/css/tabler.min.css'
+import '@tabler/core/dist/css/tabler-flags.min.css'
+import '@tabler/core/dist/css/tabler-payments.min.css'
+import '@tabler/core/dist/css/tabler-vendors.css'
+import '@tabler/core/dist/css/demo.min.css'
 const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
 type CustomAppProps = AppProps & {
@@ -56,10 +58,10 @@ const Auth = ({ children }:Props ) =>{
         return;
     }
    
-    getPost();
+    // getPost();
   }, [isUser, status])
 
-  // return children;
+  return children;
 
   if (isUser) {
     return children
