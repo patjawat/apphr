@@ -17,9 +17,14 @@ export default function Index(props: Props) {
             <div className="page-pretitle">
               Overview
             </div>
+            <Link href="/dashboard">
+<a>
+
             <h2 className="page-title">
               Dashboard
             </h2>
+</a>
+            </Link>
           </div>
           {/* Page title actions */}
           <div className="col-12 col-md-auto ms-auto d-print-none">

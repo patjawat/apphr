@@ -1,18 +1,14 @@
+import '../styles/globals.css'
 import type { NextComponentType  } from 'next' //Import Component type
 import { SessionProvider, useSession } from 'next-auth/react'
 import NextNProgress from "nextjs-progressbar";
 import { AppProps } from 'next/app';
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-// add bootstrap css 
-// import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import '../styles/globals.css'
-import '@tabler/core/dist/css/tabler.min.css'
-import '@tabler/core/dist/css/tabler-flags.min.css'
-import '@tabler/core/dist/css/tabler-payments.min.css'
-import '@tabler/core/dist/css/tabler-vendors.css'
-import '@tabler/core/dist/css/demo.min.css'
+
+// import 'bootstrap-icons/font/bootstrap-icons.css'
+
+
 const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
 type CustomAppProps = AppProps & {

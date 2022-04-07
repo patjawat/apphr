@@ -4,7 +4,6 @@ type Props = {}
 
 function dashboard({ }: Props) {
     return (
-        <div className="p-3">
 
         <div className="row row-deck row-cards">
             <div className="col-sm-6 col-lg-3">
@@ -111,8 +110,6 @@ function dashboard({ }: Props) {
                     </div>
                 </div>
             </div>
-
-        </div>
 
         </div>
     )

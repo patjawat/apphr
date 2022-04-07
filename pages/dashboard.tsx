@@ -1,52 +1,95 @@
 import React from 'react'
 import Layout from "../components/Layouts"
+import GroupSummary from '../components/GroupSummary'
+import List from '../components/list'
 type Props = {}
 
 function Dashboard({ }: Props) {
   return (
     <Layout>
-      <div className="row">
-  <div className="col-12 col-sm-6 col-md-3">
-    <div className="info-box">
-      <span className="info-box-icon bg-info elevation-1"><i className="fas fa-cog" /></span>
-      <div className="info-box-content">
-        <span className="info-box-text">CPU Traffic</span>
-        <span className="info-box-number">
-          10
-          <small>%</small>
-        </span>
+      
+  <div className="flex flex-col space-y-8">
+    {/* First Row */}
+    <div className="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-5 px-4 xl:p-0 gap-y-4 md:gap-6">
+      <div className="md:col-span-2 xl:col-span-3 bg-white p-6 rounded-2xl border border-gray-50">
+        <div className="flex flex-col space-y-6 md:h-full md:justify-between">
+          <div className="flex justify-between">
+            <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider">
+              Main Account
+            </span>
+            <span className="text-xs text-gray-500 font-semibold uppercase tracking-wider">
+              Available Funds
+            </span>
+          </div>
+          <div className="flex gap-2 md:gap-4 justify-between items-center">
+            <div className="flex flex-col space-y-4">
+              <h2 className="text-gray-800 font-bold tracking-widest leading-tight">Derol s Savings
+                Account</h2>
+              <div className="flex items-center gap-4">
+                <p className="text-lg text-gray-600 tracking-wider">**** **** *321</p>
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+            <h2 className="text-lg md:text-xl xl:text-3xl text-gray-700 font-black tracking-wider">
+              <span className="md:text-xl">$</span>
+              92,817.45
+            </h2>
+          </div>
+          <div className="flex gap-2 md:gap-4">
+            <a href="#" className="bg-blue-600 px-5 py-3 w-full text-center md:w-auto rounded-lg text-white text-xs tracking-wider font-semibold hover:bg-blue-800">
+              Transfer Money
+            </a>
+            <a href="#" className="bg-blue-50 px-5 py-3 w-full text-center md:w-auto rounded-lg text-blue-600 text-xs tracking-wider font-semibold hover:bg-blue-600 hover:text-white">
+              Link Account
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="col-span-2 p-6 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-800 flex flex-col justify-between">
+        <div className="flex flex-col">
+          <p className="text-white font-bold">Lorem ipsum dolor sit amet</p>
+          <p className="mt-1 text-xs md:text-sm text-gray-50 font-light leading-tight max-w-sm">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio soluta saepe consequuntur
+            facilis ab a. Molestiae ad saepe assumenda praesentium rem dolore? Exercitationem, neque
+            obcaecati?
+          </p>
+        </div>
+        <div className="flex justify-between items-end">
+          <a href="#" className="bg-blue-800 px-4 py-3 rounded-lg text-white text-xs tracking-wider font-semibold hover:bg-blue-600 hover:text-white">
+            Learn More
+          </a>
+          {/* <img src="assets/calendar.png" alt="calendar" className="w-auto h-24 object-cover" /> */}
+        </div>
       </div>
     </div>
-  </div>
-  <div className="col-12 col-sm-6 col-md-3">
-    <div className="info-box mb-3">
-      <span className="info-box-icon bg-danger elevation-1"><i className="fas fa-thumbs-up" /></span>
-      <div className="info-box-content">
-        <span className="info-box-text">Likes</span>
-        <span className="info-box-number">41,410</span>
+    {/* End First Row */}
+    {/* Start Second Row */}
+    <GroupSummary />
+    {/* End Second Row */}
+    {/* Start Third Row */}
+    <div className="grid grid-cols-1 md:grid-cols-5 items-start px-4 xl:p-0 gap-y-4 md:gap-6">
+      <div className="col-start-1 col-end-5">
+        <h2 className="text-xs md:text-sm text-gray-600 font-bold tracking-wide">Summary Transactions</h2>
+      </div>
+      <div className="col-span-2 bg-white p-6 rounded-xl border border-gray-50 flex flex-col space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 flex justify-between items-center">
+         
+         xx 
+        </div>
+        <canvas id="myChart" width={895} height={894} style={{display: "block", boxSizing: "border-box", height: 447, width: "447.5px"}} />
+      </div>
+      <div className="col-span-3 bg-white p-6 rounded-xl border border-gray-50 flex flex-col space-y-6">
+        <div className="flex justify-between items-center">
+          <h2 className="text-sm text-gray-600 font-bold tracking-wide">Latest Transactions</h2>
+          <a href="#" className="px-4 py-2 text-xs bg-blue-100 text-blue-500 rounded uppercase tracking-wider font-semibold hover:bg-blue-300">More</a>
+        </div>
+       <List />
       </div>
     </div>
+    {/* End Third Row */}
   </div>
-  <div className="clearfix hidden-md-up" />
-  <div className="col-12 col-sm-6 col-md-3">
-    <div className="info-box mb-3">
-      <span className="info-box-icon bg-success elevation-1"><i className="fas fa-shopping-cart" /></span>
-      <div className="info-box-content">
-        <span className="info-box-text">Sales</span>
-        <span className="info-box-number">760</span>
-      </div>
-    </div>
-  </div>
-  <div className="col-12 col-sm-6 col-md-3">
-    <div className="info-box mb-3">
-      <span className="info-box-icon bg-warning elevation-1"><i className="fas fa-users" /></span>
-      <div className="info-box-content">
-        <span className="info-box-text">New Members</span>
-        <span className="info-box-number">2,000</span>
-      </div>
-    </div>
-  </div>
-</div>
 
     </Layout>
   )

@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from './Header'
 import Navbar from './Navbar'
 
 type Props = {
@@ -8,14 +7,13 @@ type Props = {
 
 const Index = (props: Props) => {
   return (
-    <div className="page">
-      <Header />
+    <div className="p-3">
       <Navbar />
-      <div className="page-body">
-        <div className="container-xl">
-          {props.children}
-        </div>
-      </div>
+      <main className="container mx-w-6xl mx-auto py-4">
+
+   {props.children}
+
+      </main>
     </div>
 
   )
